@@ -3,7 +3,6 @@
 General Approach: 
 
 1. For every python file in the relevant directory, we represented it as a node and each edge to the project nodes point to a dependancy! 
-
 2. We ensured the graph was visually understandable to a user by placing each '*.py" 
 file away from eachother by a certain distance by placing them on seperate ends of the image.
 
