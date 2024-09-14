@@ -1,8 +1,12 @@
 import os
 import ast
+import networkx as nx
+import matplotlib.pyplot as plt
+
 
 # Specify the directory path
 folder_path = 'codebase'
+G = nx.DiGraph()
 
 for dirpath, dirnames, filenames in os.walk(folder_path):
     for filename in filenames:
@@ -22,6 +26,17 @@ for dirpath, dirnames, filenames in os.walk(folder_path):
                 # Print the found import statements
                 for stmt in import_statements:
                     print(ast.dump(stmt, indent=4))
+                
+                for node in ast.walk(tree):
+                    # Process 'import' statements
+                    if isinstance(node, ast.Import):
+                        for alias in node.names:
+                            imported_module = alias.name
+                            G.add_edge(filename, imported_module)
+                    # Process 'from ... import ...' statements
+                    elif isinstance(node, ast.ImportFrom):
+                        if node.module:
+                            G.add_edge(filename, node.module)
 
-
-            
+nx.draw(G, with_labels=True)
+plt.show()
