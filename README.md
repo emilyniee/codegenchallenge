@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/6350f948-ef92-471d-82f3-7fd9dbec48d4)
+
 General Approach: 
 
 1. For every python file in the relevant directory, we represented it as a node and each edge to the project nodes point to a dependancy! 
